@@ -8,7 +8,11 @@ function App() {
   console.log("🚀 ~ file: App.js ~ line 8 ~ App ~ API", API);
 
   useEffect(() => {
-    fetch(`${API}/posts/list`)
+    getList();
+  }, [API]);
+
+  const getList = () => {
+    fetch(`/posts/list`)
       .then(async (res) => {
         const list = await res.json();
         setData(list?.data);
@@ -16,7 +20,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [API]);
+  };
 
   return (
     <div className="App">
